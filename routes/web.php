@@ -19,3 +19,5 @@ Route::get('/', function () {
 });
 
 Route::get('hello/{id?}', [HelloController::class, 'index']);
+
+Route::post('hello', [HelloController::class, 'post']);
