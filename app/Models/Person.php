@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
+use App\Models\Board;
+
 class Person extends Model
 {
     protected $guarded = array('id');
@@ -16,6 +18,11 @@ class Person extends Model
         'mail' => 'email',
         'age' => 'integer|min:0|max:150',
     );
+
+    public function boards()
+    {
+        return $this->hasMany(Board::class);
+    }
 
     // use HasFactory;
     public function getData()
@@ -42,6 +49,6 @@ class Person extends Model
     {
         parent::boot();
 
-        static::addGlobalScope(new ScopePerson());
+        // static::addGlobalScope(new ScopePerson());
     }
 }
