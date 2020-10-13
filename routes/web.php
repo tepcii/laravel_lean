@@ -42,6 +42,9 @@ Route::post('hello/del', [HelloController::class, 'remove']);
 
 Route::get('hello/rest', [HelloController::class, 'rest']);
 
+Route::get('hello/session', [HelloController::class, 'ses_get']);
+Route::post('hello/session', [HelloController::class, 'ses_put']);
+
 Route::get('person', [PersonController::class, 'index']);
 
 Route::get('person/find', [PersonController::class, 'find']);
