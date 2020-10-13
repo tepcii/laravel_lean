@@ -9,6 +9,8 @@ use App\Http\Controllers\PersonController;
 
 use App\Http\Controllers\BoardController;
 
+use App\Http\Controllers\RestappController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,7 +26,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('hello', [HelloController::class, 'index']);
+Route::get('hello', [HelloController::class, 'index'])->middleware('auth');
 Route::post('hello', [HelloController::class, 'post']);
 
 Route::get('hello/show', [HelloController::class, 'show']);
@@ -37,6 +39,14 @@ Route::post('hello/edit', [HelloController::class, 'update']);
 
 Route::get('hello/del', [HelloController::class, 'del']);
 Route::post('hello/del', [HelloController::class, 'remove']);
+
+Route::get('hello/rest', [HelloController::class, 'rest']);
+
+Route::get('hello/session', [HelloController::class, 'ses_get']);
+Route::post('hello/session', [HelloController::class, 'ses_put']);
+
+Route::get('hello/auth', [HelloController::class, 'getAuth']);
+Route::post('hello/auth', [HelloController::class, 'postAuth']);
 
 Route::get('person', [PersonController::class, 'index']);
 
@@ -56,3 +66,9 @@ Route::get('board', [BoardController::class, 'index']);
 
 Route::get('board/add', [BoardController::class, 'add']);
 Route::post('board/add', [BoardController::class, 'create']);
+
+Route::resource('rest', RestappController::class);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
